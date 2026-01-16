@@ -6,7 +6,7 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 08:23:40 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/16 14:36:42 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/16 17:51:14 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,10 @@ int	start_pars(char *str, t_data *data)
 	char	**tst_map;
 
 	if (dot_cub(str) == 0)
-		return (write(2, "ERORR FILE Name\n", 17), 1);
+		return (write(2, "ERORR FILE Name\n", 17), -1);
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
-		return (write(2, "Erorr file \n", 13), 1);
+		return (write(2, "Erorr file \n", 13), -1);
 	if (init_data(data))
 		return (close(fd), -1);
 	if (get_path_color(fd, data) == -1)

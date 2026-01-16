@@ -6,7 +6,7 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:50:35 by imel-haj          #+#    #+#             */
-/*   Updated: 2026/01/16 16:43:13 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/16 17:51:57 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	render_frame(void *param)
 	update_gun_animation(data);
 }
 
+
 void	free_everything(t_data *d)
 {
 	int	i;
@@ -42,6 +43,7 @@ void	free_everything(t_data *d)
 	{
 		if (d->texture[i].img_ptr)
 			mlx_delete_image(d->mlx, d->texture[i].img_ptr);
+		d->texture[i].img_ptr = NULL;
 		i++;
 	}
 	i = 0;
