@@ -1,0 +1,21 @@
+// here double comma but no second number
+C 1,,7
+
+
+// one path of the four paths is missing
+WE ./texttures/w.png
+
+
+// path error  | path is incorrect 
+SO  ./textures/.png 
+
+
+// order
+
+WE ./textures/W.png                
+C 1,0,3
+EA ./textures/E.png  
+
+
+// protect mac width and height
+// close the path texters
