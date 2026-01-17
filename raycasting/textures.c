@@ -6,7 +6,7 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 23:16:01 by imel-haj          #+#    #+#             */
-/*   Updated: 2026/01/17 18:28:16 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/17 18:52:17 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,9 @@ int	load_textures(t_data *data)
 	list = data->path;
 	while (list)
 	{
-		if (i == 2)
-		{
-			tex = mlx_load_png("cococo");
-			return (free_mlx(data, i, 'm'), -1);
-			
-		}
 		tex = mlx_load_png(list->texter);
-		
+		if (!tex)
+			return (free_mlx(data, i, 'm'), -1);
 		data->texture[i].img_ptr = mlx_texture_to_image(data->mlx, tex);
 		data->texture[i].width = tex->width;
 		data->texture[i].height = tex->height;
