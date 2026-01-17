@@ -6,7 +6,7 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 11:32:19 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/14 22:05:14 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/17 22:29:16 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	check_path_put(char *str, t_data *data)
 
 	i = 0;
 	arr = ft_split(str, 32);
+	if (!arr)
+		return (-1);
 	while (arr[i])
 		i++;
 	if (i != 2)
@@ -94,6 +96,5 @@ int	check_path_put(char *str, t_data *data)
 		data->list->c = arr[0][0];
 		data->list = data->list->next;
 	}
-	ft_fre(arr);
-	return (0);
+	return (ft_fre(arr), 0);
 }

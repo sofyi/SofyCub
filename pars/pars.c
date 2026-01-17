@@ -6,7 +6,7 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 08:23:40 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/17 18:04:58 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/17 22:32:00 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	get_map(t_data *data, int fd)
 	if (!long_str || player == '0')
 		return (free(long_str), -1);
 	data->map_info.map = ft_split(long_str, '\n');
+	if (!data->map_info.map)
+		return (free(long_str), -1);
 	return (free(long_str), 0);
 }
 
@@ -52,6 +54,8 @@ int	get_path_color(int fd, t_data *data)
 		if (!str)
 			break ;
 		lin = skip_spc(str);
+		if (!lin)
+			return (free(str), get_next_line(-1), -1);
 		free(str);
 		if (lin[0] != '\n' && lin[0])
 		{
@@ -84,14 +88,15 @@ int	init_data(t_data *data)
 	data->clr[i] = NULL;
 	i = 0;
 	data->path = ft_lstnew();
+	if (!data->path)
+		return (ft_free_int(data->clr, 2), -1);
 	while (i < 3)
 	{
 		ft_lstadd_back(&data->path, ft_lstnew());
 		i++;
 	}
 	data->list = data->path;
-	data->map_info.map = NULL;
-	return (0);
+	return (data->map_info.map = NULL, 0);
 }
 
 int	dot_cub(char *str)
@@ -114,7 +119,7 @@ int	start_pars(char *str, t_data *data)
 	int		fd;
 	char	**tst_map;
 
-	if (dot_cub(str) == 0)
+	if (!dot_cub(str))
 		return (write(2, "ERORR FILE Name\n", 17), -1);
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
