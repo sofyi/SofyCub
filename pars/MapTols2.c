@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MapTols2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 12:02:46 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/14 16:52:47 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/17 16:31:42 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,24 +92,18 @@ int	max_lin_map(char **map, int *len_map)
 	return (max);
 }
 
-char	**get_tst_map(char **map, t_data *data)
+char	**fill_arr(char **arr, char **map, int max)
 {
-	int		i;
-	int		j;
-	int		max;
-	char	**arr;
+	int	i;
+	int	j;
 
-	i = 0;
-	max = max_lin_map(map, &i);
-	arr = malloc(sizeof(char *) * (i + 1));
-	data->map_info.map_h = i;
-	data->map_info.map_w = max;
-	arr[i] = NULL;
 	i = 0;
 	while (map[i])
 	{
 		j = 0;
 		arr[i] = malloc(max + 1);
+		if (!arr[i])
+			return ( arr[i] = NULL, ft_fre(arr), NULL);
 		while (map[i][j])
 		{
 			arr[i][j] = map[i][j];
@@ -120,4 +114,20 @@ char	**get_tst_map(char **map, t_data *data)
 		arr[i++][j] = '\0';
 	}
 	return (arr);
+}
+
+char	**get_tst_map(char **map, t_data *data)
+{
+	int		i;
+	int		max;
+	char	**arr;
+
+	max = max_lin_map(map, &i);
+	arr = malloc(sizeof(char *) * (i + 1));
+	if (!arr)
+		return (NULL);
+	data->map_info.map_h = i;
+	data->map_info.map_w = max;
+	arr[i] = NULL;
+	return (fill_arr(arr, map, max));
 }

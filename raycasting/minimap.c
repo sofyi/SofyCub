@@ -12,30 +12,42 @@
 
 #include "../cub.h"
 
+static void	render_tile(t_data *data, t_mmap m, int x, int y)
+{
+	t_point	p;
+
+	if (y >= 0 && y < data->map_info.map_h && x >= 0
+		&& x < data->map_info.map_w)
+	{
+		p.x = (x - m.start_x) * m.tile + 10;
+		p.y = (y - m.start_y) * m.tile + 10;
+		draw_square(data, p, m.tile, get_minimap_color(data, x, y));
+	}
+}
+
 void	draw_minimap(t_data *data)
 {
-	int	x;
-	int	y;
-	int	tile;
+	t_mmap	m;
+	t_point	p;
 
-	tile = 300//tile = 10 * 10;
-		/ (data->map_info.map_w > data->map_info.map_h ? data->map_info.map_w : data->map_info.map_h);//forbidden
-	if (tile < 8)
-		tile = 8;
-	y = 0;
-	while (data->map_info.map[y])
+	m.radius = 4;
+	m.tile = 15;
+	m.start_y = (int)data->player.pos_y - m.radius;
+	m.start_x = (int)data->player.pos_x - m.radius;
+	m.y = m.start_y;
+	while (m.y <= m.start_y + (m.radius * 2))
 	{
-		x = 0;
-		while (data->map_info.map[y][x])
+		m.x = m.start_x;
+		while (m.x <= m.start_x + (m.radius * 2))
 		{
-			draw_square(data, x * tile + 10, y * tile + 10, tile,
-				get_minimap_color(data, x, y));
-			x++;
+			render_tile(data, m, m.x, m.y);
+			m.x++;
 		}
-		y++;
+		m.y++;
 	}
-	draw_square(data, data->player.pos_x * tile + 8, data->player.pos_y * tile
-		+ 8, 4, rgb_to_int(255, 0, 0, 255));
+	p.x = (m.radius * m.tile) + 10 + (m.tile / 3);
+	p.y = (m.radius * m.tile) + 10 + (m.tile / 3);
+	draw_square(data, p, m.tile / 3, rgb_to_int(255, 0, 0, 255));
 }
 
 unsigned int	get_minimap_color(t_data *data, int x, int y)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 16:05:53 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/14 15:20:13 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/17 16:22:56 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	*ft_strdup(char *s)
 
 	i = 0;
 	str = malloc(ft_strlen(s) + 1);
+	if (!str)
+		return (NULL);
 	while (s[i])
 	{
 		str[i] = s[i];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_tool.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 15:00:39 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/16 15:23:40 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/17 13:07:23 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	check_first_last_wall(char **map)
 			return (1);
 		i++;
 	}
-	
 	return (0);
 }
 

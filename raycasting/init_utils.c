@@ -15,7 +15,7 @@
 unsigned int	rgb_to_int(int r, int g, int b, int a)
 {
 	return ((unsigned int)((r & 0xff) << 24
-		|(g & 0xff) << 16 | (b & 0xff) << 8 | (a & 0xff)));
+		| (g & 0xff) << 16 | (b & 0xff) << 8 | (a & 0xff)));
 }
 
 static void	set_ns(t_data *data, char c)

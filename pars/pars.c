@@ -6,7 +6,7 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 08:23:40 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/16 17:51:14 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/17 18:04:58 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	get_path_color(int fd, t_data *data)
 	char	*lin;
 
 	i = 0;
-	while (i < TotalColrsTxtur)
+	while (i < TOTALCOLRSTXTUR)
 	{
 		str = get_next_line(fd);
 		if (!str)
@@ -122,11 +122,11 @@ int	start_pars(char *str, t_data *data)
 	if (init_data(data))
 		return (close(fd), -1);
 	if (get_path_color(fd, data) == -1)
-		return (close(fd), free_data(data), -1);
+		return (close (fd), free_data(data), -1);
 	if (get_map(data, fd) < 0)
 		return (err_msg("Erorr: map erorr\n", data), close(fd), -1);
 	tst_map = get_tst_map(data->map_info.map, data);
-	if (check_map(tst_map) < 0)
+	if (!tst_map || check_map(tst_map) < 0)
 	{
 		err_msg("Erorr: map erorr\n", data);
 		return (close(fd), ft_fre(tst_map), -1);
@@ -135,44 +135,3 @@ int	start_pars(char *str, t_data *data)
 	get_next_line(-1);
 	return (close(fd), 0);
 }
-
-
-// int main(int ac, char **av)
-// {
-// 	t_data	data;
-
-// 	if (ac == 2)
-// 	{
-// 		if(start_pars(av[1], &data))
-// 			return ( 1);	
-// 	}
-// 	else
-// 		return (write(2, "ERORR: program must take two arg\n", 34), -1);
-// 	int i = 0;
-// 	t_path *list = data.path;
-// 	printf ("---------path----------------\n");
-// 	while (list)
-// 	{
-// 		printf ("path[%s]\n",  list->texter);
-// 		list = list->next;
-// 	}
-// 	printf("-----------------coooooolor----------\n");
-// 	int j = 0;
-// 	i = 0;
-// 	while (data.clr[i])
-// 	{
-// 		j = 0;
-// 		while (j < 4)
-// 			printf ("[%d]\n", data.clr[i][j++]);
-// 		i++;
-// 	}
-// 	printf("-----------------map----------\n");
-// 	i = 0;
-// 	j = 0;
-// 	while (data.map_info.map[i])
-// 	{
-// 			printf ("maaaap [%s]\n",data.map_info.map[i]);
-// 		i++;
-// 	}
-// 	free_data(&data);
-// }

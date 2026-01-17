@@ -22,9 +22,9 @@ MLX_LIB = $(MLX_DIR)/build/libmlx42.a
 SRCS = ./pars/pars.c ./pars/get_next_l.c ./pars/helper.c \
     ./pars/helper2.c ./pars/check.c ./pars/map_tool.c ./pars/free_fun.c\
     ./pars/check2.c ./pars/Libft2.c ./pars/LibftHelper.c ./pars/MapTols2.c\
-	 ./raycasting/main.c ./raycasting/gun_anim.c ./raycasting/init_utils.c \
+	 main.c ./raycasting/gun_anim.c ./raycasting/init_utils.c \
 	 ./raycasting/minimap.c ./raycasting/movement.c ./raycasting/raycasting.c \
-	 ./raycasting/render_utils.c  ./raycasting/textures.c \
+	 ./raycasting/render_utils.c  ./raycasting/textures.c ./raycasting/rayc_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 

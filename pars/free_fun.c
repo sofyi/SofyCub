@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_fun.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 13:14:59 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/14 22:25:51 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/17 13:06:39 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,10 @@ void	ft_fre(char **str)
 void	free_data(t_data *data)
 {
 	int	i;
-	
+
 	i = 0;
 	while (data->clr[i])
 		free(data->clr[i++]);
-	i = 0;
-	
 	ft_lstclear(&data->path);
 	if (data->map_info.map)
 		ft_fre(data->map_info.map);

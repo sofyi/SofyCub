@@ -6,7 +6,7 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 23:16:01 by imel-haj          #+#    #+#             */
-/*   Updated: 2026/01/16 19:58:00 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/17 18:28:16 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,31 @@ void	put_text_gun(char **paths)
 	paths[4] = "./frames/shotgun5.png";
 }
 
-void	load_txt_gun(t_data *data)
+void	free_mlx(t_data *data, int max, char c)
+{
+	int	i;
+
+	i = 0;
+	if (c == 'm')
+	{
+		while (i < max)
+		{
+			mlx_delete_image(data->mlx, data->texture[i].img_ptr);
+			i++;
+		}
+	}
+	if (c == 'g')
+	{
+		while (i < max)
+		{
+			if (data->gun.frames[i])
+				mlx_delete_image(data->mlx, data->gun.frames[i]);
+			i++;
+		}
+	}
+}
+
+int	load_txt_gun(t_data *data)
 {
 	int				i;
 	mlx_texture_t	*texture;
@@ -35,7 +59,7 @@ void	load_txt_gun(t_data *data)
 	{
 		texture = mlx_load_png(paths[i]);
 		if (!texture)
-			exit(1);
+			return (free_mlx(data, i, 'g'), -1);
 		data->gun.frames[i] = mlx_texture_to_image(data->mlx, texture);
 		mlx_delete_texture(texture);
 		x = (WIDTH / 2) - (data->gun.frames[i]->width / 2);
@@ -47,9 +71,10 @@ void	load_txt_gun(t_data *data)
 	data->gun.frames[0]->enabled = true;
 	data->gun.current_frame = 0;
 	data->gun.is_shooting = false;
+	return (0);
 }
 
-void	load_textures(t_data *data)
+int	load_textures(t_data *data)
 {
 	int				i;
 	t_path			*list;
@@ -59,19 +84,14 @@ void	load_textures(t_data *data)
 	list = data->path;
 	while (list)
 	{
-		tex = mlx_load_png(list->texter);
-		if (i == 3)
+		if (i == 2)
 		{
+			tex = mlx_load_png("cococo");
+			return (free_mlx(data, i, 'm'), -1);
 			
-			tex = mlx_load_png("not exiist");
-			if (!tex)
-			{
-				//free_png(data, i);
-				free_data(data);
-				mlx_terminate(data->mlx);
-				exit(0);
-			}
 		}
+		tex = mlx_load_png(list->texter);
+		
 		data->texture[i].img_ptr = mlx_texture_to_image(data->mlx, tex);
 		data->texture[i].width = tex->width;
 		data->texture[i].height = tex->height;
@@ -79,4 +99,5 @@ void	load_textures(t_data *data)
 		i++;
 		list = list->next;
 	}
+	return (0);
 }

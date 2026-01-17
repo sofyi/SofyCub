@@ -6,7 +6,7 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 15:15:03 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/14 22:26:22 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/17 18:04:36 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	ft_lstclear(t_path **lst)
 	{
 		list = *lst;
 		*lst = (*lst)->next;
-		close(list->fd);
+		if (list->fd > 0)
+			close(list->fd);
 		ft_lstdelone(list);
 	}
 	*lst = NULL;

@@ -38,7 +38,7 @@ void	draw_ceiling_floor(t_data *data)
 	}
 }
 
-void	draw_square(t_data *data, int x, int y, int size, unsigned int color)
+void	draw_square(t_data *data, t_point p, int size, uint32_t color)
 {
 	int	i;
 	int	j;
@@ -49,7 +49,8 @@ void	draw_square(t_data *data, int x, int y, int size, unsigned int color)
 		j = 0;
 		while (j < size)
 		{
-			mlx_put_pixel(data->img, x + j, y + i, color);
+			if (p.x + j < WIDTH && p.y + i < HEIGHT)
+				mlx_put_pixel(data->img, p.x + j, p.y + i, color);
 			j++;
 		}
 		i++;
