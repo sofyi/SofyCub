@@ -6,25 +6,11 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 12:02:46 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/17 22:48:36 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/18 09:28:48 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
-
-int	lin_is_sps(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!(str[i] <= 32) && str[i] != '\n')
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 int	wall_check(char *str, char c)
 {

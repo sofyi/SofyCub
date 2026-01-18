@@ -1,12 +1,12 @@
 SO ./textures/S.png                 
 
-NO ./textures/N.png  
+NO ./textures/N.png
 
 WE ./textures/W.png   
 
 EA ./textures/E.png
 
-C 128,128, 128
+C 128,128,128
 F 74, 55, 40 
 
 1111111111111111111111111111111111111111111111111111111111111111111111111111111111

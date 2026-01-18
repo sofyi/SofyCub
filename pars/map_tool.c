@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_tool.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 15:00:39 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/17 13:07:23 by imel-haj         ###   ########.fr       */
+/*   Updated: 2026/01/18 09:28:53 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,18 @@ int	check_map(char **map)
 	if (wall_check(map[i - 1], 's'))
 		return (-1);
 	return (0);
+}
+
+int	lin_is_sps(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!(str[i] <= 32) && str[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
 }
